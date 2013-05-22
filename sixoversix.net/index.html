@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Welcome to sixoversix</title>
+    <link rel="stylesheet" href="content/css/internal/app.css" type="text/css" />
+    <script src="scripts/external/linq-0.0.js"></script>
+    <script src="scripts/external/jquery-1.8.3.min.js"></script>
+    <script src="scripts/external/knockout-2.2.1.js"></script>
+    <script src="scripts/internal/app.js"></script>
+</head>
+<body>
+    <div id="DEBUG"></div>
+    <div id="content" style="position: relative">
+        <div class="socialMedia">
+            <a href="http://www.facebook.com/sixoversixmusic">
+                <img class="socialMedia" src="content/img/facebook.png" />
+            </a>
+            <a href="http://twitter.com/sixoversixband">
+                <img class="socialMedia" src="content/img/twitter.png" />
+            </a>
+            <a href="http://www.youtube.com/user/sixoversixtheband">
+                <img class="socialMedia" src="content/img/youtube.png" />
+            </a>
+            <a href="http://sixoversix.bandcamp.com/">
+                <img class="socialMedia" src="content/img/bandcamp.png" />
+            </a>
+        </div>
+        <div class="ambient" style="overflow: hidden">
+            <img style="position: absolute; left: 0; width: 100%; height: auto; display: block;" src="content/img/background.jpg" />
+            <img id="logo1" class="logo1" src="content/img/sixoversixlogo_big.png" />
+        </div>
+        <div data-bind="with: Menu">
+            <div data-bind="template: { name: 'Spacer', data: Spacer }"></div>
+            <ul data-bind="foreach: Items" class="topMenu">
+                <li data-bind="template: { name: Template }" />
+            </ul>
+            <img id="logo2" class="logo2" src="content/img/sixoversixlogo_small.png" style="opacity: 0; cursor: pointer" data-bind="click: Home" />
+        </div>
+
+        <div data-bind="with: Content" id="main">
+            <div style="position: absolute; bottom: 25px; width: 80%; margin-left: 10%; margin-right: 10%;" data-bind="foreach: Items, style: { height: Height } ">
+                <div style="padding: 0px 20px 0px 20px; height: 100%; width: 100%; overflow: hidden" data-bind="trigger: { value: Selected, action: Trigger, bind: Bind }">
+                    <div class="contentBox ambient"></div>
+                    <div style="text-align: center">
+                        <h2 data-bind="text: Title"></h2>
+                    </div>
+                    <!-- ko with: Content -->
+                    <div data-bind="template: { name: Template }"></div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/html" id="Spacer">
+        <div data-bind="style: { height: Height, width: Width }"></div>
+    </script>
+    <script type="text/html" id="MenuItem">
+        <span data-bind="text: Name, click: OnClick, css: { selectedMenuItem: Selected() }" />
+    </script>
+    <script type="text/html" id="LinkMenuItem">
+        <a data-bind="text: Name, attr: { href: Href }" />
+    </script>
+    <script type="text/html" id="Blank">
+    </script>
+    <script type="text/html" id="ComingSoon">
+        Coming soon....
+    </script>
+    <script type="text/html" id="SignUp">
+        <div class="signupBox">
+            <label class="emailTextbox">Name:</label>
+            <input data-bind="value: Name" type="text" placeholder="name" class="emailTextbox" />
+            <br />
+            <label class="emailTextbox">Email:</label>
+            <input data-bind="value: Email" type="text" placeholder="email adress" class="emailTextbox" />
+            <a href="javascript:void(0)" data-bind="click: SubmitEmail">Submit</a>
+            <br />
+            <span data-bind="visible: Sending">
+                <span>Sending</span>
+                <span data-bind="visible: Blinking" style="margin-left: -10px;">_</span>
+            </span>
+            <span data-bind="visible: ShowSuccess">Email sent successfully</span>
+        </div>
+    </script>
+    <script type="text/html" id="MusicContent">
+        <div>
+            <h2 style="display: inline">Circadian Rythm</h2>
+            <iframe width="46" height="23" style="display: inline; width: 46px; height: 23px;" src="http://bandcamp.com/EmbeddedPlayer/v=2/album=3181924876/size=short/bgcol=FFFFFF/linkcol=4285BB/" allowtransparency="true" frameborder="0"><a href="http://sixoversix.bandcamp.com/album/circadian-rhythm">Circadian Rhythm by sixoversix</a></iframe>
+            <br />
+            <img src="content/img/albumCR.jpg" class="albumCover left" />
+            <div class="left">
+                <ol>
+                    <li>Skyline</li>
+                    <li>Persone Non Grata</li>
+                    <li>Little Debts</li>
+                    <li>Clockwork Origin</li>
+                    <li>... and His Father Before Him</li>
+                </ol>
+            </div>
+            <div class="clearFloat" />
+        </div>
+    </script>
+    <script type="text/html" id="Contact">
+        <div>
+            <span>contanct us: </span>
+            <h4 style="display: inline"><a href="mailto:info@sixoversix.net">info@sixoversix.net</a></h4>
+        </div>
+    </script>
+</body>
+</html>
